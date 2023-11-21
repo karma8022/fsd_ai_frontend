@@ -8,6 +8,15 @@ const YTComponent = () => {
   const [trainingUrl, setTrainingUrl] = useState('');
   const [loading, setLoading] = useState(false);
 
+  const handleTrainingURLChange = (e) => {
+    // write regex remove everything after the & symbol using regex https://www.youtube.com/watch?v=yRmOWcWdQAo&ab_channel=OverSimplified
+
+    const url = e.target.value;
+    const regex_url = url.replace(/&.*/g, '');
+    console.log(regex_url)
+    setTrainingUrl(regex_url);
+  }
+
   const handleAnswerClick = async () => {
     try {
       const response = await axios.get(`http://127.0.0.1:8000/query/llm/?query=${url}&url=${trainingUrl}`);
@@ -62,7 +71,9 @@ const YTComponent = () => {
             className="mt-1 p-2 border rounded-l-md w-full"
             placeholder="Paste YouTube URL here..."
             value={trainingUrl}
-            onChange={(e) => setTrainingUrl(e.target.value)}
+            onChange={(e) => {
+              handleTrainingURLChange(e)
+            }}
           />
           <button
             className="bg-purple-500 text-white px-4 py-2 rounded-r-md"
