@@ -5,8 +5,15 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: linear-gradient(to right, rgb(148, 87, 235), black);
 }
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+
+.mid{
+  z-index: 99;
+}

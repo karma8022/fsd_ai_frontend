@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import gptLogo from "../assets/tailwind-logo.png";
 
 const YTComponent = () => {
   const [url, setUrl] = useState('');
@@ -58,17 +59,17 @@ const YTComponent = () => {
   };
 
   return (
-    <div className="max-w-2xl mx-auto mt-8 p-4 bg-gray-100 rounded-md">
+    <div className="max-w-2xl mx-auto mt-8 p-4 rounded-md bg-gradient-to-r from-purple-800 to-black text-white">
       {/* Training Section */}
       <div className="mb-4">
-        <label htmlFor="trainingUrl" className="block text-sm font-medium text-gray-700">
+        <label htmlFor="trainingUrl" className="block text-sm font-medium text-black-700">
           Enter URL for Training:
         </label>
         <div className="flex">
           <input
             type="text"
             id="trainingUrl"
-            className="mt-1 p-2 border rounded-l-md w-full"
+            className="mt-1 p-2 border rounded-l-md w-full text-black"
             placeholder="Paste YouTube URL here..."
             value={trainingUrl}
             onChange={(e) => {
@@ -79,37 +80,37 @@ const YTComponent = () => {
             className="bg-purple-500 text-white px-4 py-2 rounded-r-md"
             onClick={handleTrainClick}
           >
-            {loading ? 'Loading...' : 'Train'}
+            {loading ? 'Loading...' : <img src={gptLogo} alt="Train" className="logo-button" style={{ maxHeight: '24px' }} />}
           </button>
         </div>
       </div>
 
       {/* Answer and References Section */}
       <div className="mb-4">
-        <label htmlFor="url" className="block text-sm font-medium text-gray-700">
+        <label htmlFor="url" className="block text-sm font-medium text-black-700">
           Enter Question:
         </label>
         <input
           type="text"
           id="url"
-          className="mt-1 p-2 border rounded-md w-full"
+          className="mt-1 p-2 border rounded-md w-full text-black"
           placeholder="Write your Question here..."
           value={url}
           onChange={(e) => setUrl(e.target.value)}
         />
       </div>
 
-      <div className="mb-4">
-        <button
-          className="bg-blue-500 text-white px-4 py-2 rounded-md mr-2"
-          onClick={handleAnswerClick}
-        >
+      <div className="mb-4 flex">
+      <button
+        className="bg-purple-400 text-white px-4 py-2 rounded-md mr-2 hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue"
+        onClick={handleAnswerClick}
+      >
           Answer
         </button>
         <button
-          className="bg-green-500 text-white px-4 py-2 rounded-md"
-          onClick={handleReferencesClick}
-        >
+        className="bg-purple-400 text-white px-4 py-2 rounded-md hover:bg-green-600 focus:outline-none focus:shadow-outline-green"
+        onClick={handleReferencesClick}
+      >
           References
         </button>
       </div>
